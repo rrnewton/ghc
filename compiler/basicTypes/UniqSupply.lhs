@@ -29,7 +29,7 @@ module UniqSupply (
 import Unique
 import FastTypes
 
-import GHC.IO (unsafeDupableInterleaveIO)
+import GHC.IO ( unsafeInterleaveIO )
 
 import MonadUtils
 import Control.Monad
@@ -80,7 +80,7 @@ mkSplitUniqSupply c
 
         -- This is one of the most hammered bits in the whole compiler
         mk_supply
-          = unsafeDupableInterleaveIO (
+          = unsafeInterleaveIO (
                 genSym      >>= \ u_ -> case iUnbox u_ of { u -> (
                 mk_supply   >>= \ s1 ->
                 mk_supply   >>= \ s2 ->
